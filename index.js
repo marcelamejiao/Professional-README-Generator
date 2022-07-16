@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 const fs = require('fs');
 
 // TODO: Create an array of questions for user input
@@ -63,55 +64,6 @@ const questions = () => {
         },
 ])};
 
-const generateREADME = function ({title, description, installationInstructions, usageInformation, contributionGuidelines, testInstructions, license, github, email}) {
-    return `
-# **${title}**
-
-## **Table of Contents** 
-
-- [**Description**](#description)
-- [**Installation**](#installation)
-- [**Usage**](#usage)
-- [**License**](#license)
-- [**Contributing**](#contributing)
-- [**Test**](#test)
-- [**Questions**](#questions)
-
-
-## **Description**
-
-${description}
-
-## **Installation**
-
-${installationInstructions}
-
-## **Usage**
-
-${usageInformation}
-
-## **Contributing**
-
-${contributionGuidelines}
-
-## **Test**   
-
-${testInstructions}
-
-## **License**
-
-${license}// TODO add special logic for license
-
-## **Questions**
-
-[https://https://github.com/marcelamejiao//](https://https://github.com/marcelamejiao/)
-https://github.com/marcelamejiao
-
-${github}// TODO add special logic for GitHub
-
-${email}// TODO add special logic for email`;
-}
-
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
@@ -119,7 +71,7 @@ function writeToFile(fileName, data) {}
 function init() {
     questions()
     // Use writeFileSync method to use promises instead of a callback function
-    .then((answers) => fs.writeFileSync('output/README.md', generateREADME(answers)))
+    .then((answers) => fs.writeFileSync('output/README.md', generateMarkdown(answers)))
     .then(() => console.log('Successfully wrote to output/README.md'))
     .catch((err) => console.error(err));
 }
