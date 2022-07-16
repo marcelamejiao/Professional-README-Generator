@@ -39,6 +39,7 @@ const questions = () => {
         {
             type: 'list',
             choices: [
+                "None",
                 "Apache License 2.0",
                 "BSD 3-Clause 'New' or 'Revised' license",
                 "BSD 2-Clause 'Simplified' or 'FreeBSD' license",
@@ -46,8 +47,6 @@ const questions = () => {
                 "GNU Library or 'Lesser' General Public License (LGPL)",
                 "MIT license",
                 "Mozilla Public License 2.0",
-                "Common Development and Distribution License",
-                "Eclipse Public License version 2.0"
             ],
             name: 'license',
             message: 'Choose a lincense from this list',

@@ -1,37 +1,66 @@
 // Source: https://opensource.org/licenses
+// Source: https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba
 const licenses = {
-  "Apache License 2.0": "https://opensource.org/licenses/Apache-2.0",
-  "BSD 3-Clause 'New' or 'Revised' license": "https://opensource.org/licenses/BSD-3-Clause",
-  "BSD 2-Clause 'Simplified' or 'FreeBSD' license": "https://opensource.org/licenses/BSD-2-Clause",
-  "GNU General Public License (GPL)": "https://opensource.org/licenses/gpl-license",
-  "GNU Library or 'Lesser' General Public License (LGPL)": "https://opensource.org/licenses/lgpl-license",
-  "MIT license": "https://opensource.org/licenses/MIT",
-  "Mozilla Public License 2.0": "https://opensource.org/licenses/MPL-2.0",
-  "Common Development and Distribution License": "https://opensource.org/licenses/CDDL-1.0",
-  "Eclipse Public License version 2.0": "https://opensource.org/licenses/EPL-2.0"
+  "Apache License 2.0": {
+    link: "https://opensource.org/licenses/Apache-2.0",
+    badge: "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)"
+  },
+  "BSD 3-Clause 'New' or 'Revised' license": {
+    link: "https://opensource.org/licenses/BSD-3-Clause",
+    badge: "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
+  },
+  "BSD 2-Clause 'Simplified' or 'FreeBSD' license": {
+    link: "https://opensource.org/licenses/BSD-2-Clause",
+    badge: "[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)"
+  },
+  "GNU General Public License (GPL)": {
+  link: "https://opensource.org/licenses/gpl-license",
+  badge: "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://opensource.org/licenses/gpl-license)"
+  },
+  "GNU Library or 'Lesser' General Public License (LGPL)": {
+  link: "https://opensource.org/licenses/lgpl-license",
+  badge: "[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://opensource.org/licenses/lgpl-license)"
+  },
+  "MIT license": {
+  link: "https://opensource.org/licenses/MIT",
+  badge: "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+  },
+  "Mozilla Public License 2.0": {
+  link:"https://opensource.org/licenses/MPL-2.0",
+  badge: "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)"
+  },
 };
 
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  if (license===null || license===""){
+function renderLicenseBadge(license) {
+  if (license==="None"){
     return "";
   } else {
-    return `[${license}](${licenses[license]})`;
+    return `${licenses[license].badge}`;
   }
 }
 
-// TODO: Create a function that returns the license section of README
+// Returns the license link
 // If there is no license, return an empty string
-function renderLicenseSection(license) {
-  if (license===null || license===""){
+function renderLicenseLink(license) {
+  if (license==="None"){
     return "";
   } else {
-    return `Please note this application is covered under the ${renderLicenseLink(license)} license.`;
+    return `- [**License**](#license)`;
+  }
+}
+
+// Returns the license section of README
+// If there is no license, return an empty string
+function renderLicenseSection(license) {
+  if (license==="None"){
+    return "";
+  } else {
+    return `
+## **License**
+
+Please note this application is covered under the ${license} license.`;
   }
 }
 
@@ -40,12 +69,14 @@ function generateMarkdown({title, description, installationInstructions, usageIn
   return `
 # **${title}**
 
+${renderLicenseBadge(license)}
+
 ## **Table of Contents** 
 
 - [**Description**](#description)
 - [**Installation**](#installation)
 - [**Usage**](#usage)
-- [**License**](#license)
+${renderLicenseLink(license)}
 - [**Contributing**](#contributing)
 - [**Test**](#test)
 - [**Questions**](#questions)
@@ -71,18 +102,13 @@ ${contributionGuidelines}
 
 ${testInstructions}
 
-## **License**
-
 ${renderLicenseSection(license)}
 
 ## **Questions**
 
-[https://https://github.com/marcelamejiao//](https://https://github.com/marcelamejiao/)
-https://github.com/marcelamejiao
+[https://github.com/${github}](https://github.com/${github})
 
-${github}// TODO add special logic for GitHub
-
-${email}// TODO add special logic for email`;
+If you have additional questions, please email me at: ${email}`;
 }
 
 module.exports = generateMarkdown;
