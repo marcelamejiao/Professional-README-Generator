@@ -36,7 +36,18 @@ const questions = () => {
             message: 'Enter the test instructions',
         },
         {
-            type: 'input',
+            type: 'list',
+            choices: [
+                "Apache License 2.0",
+                "BSD 3-Clause 'New' or 'Revised' license",
+                "BSD 2-Clause 'Simplified' or 'FreeBSD' license",
+                "GNU General Public License (GPL)",
+                "GNU Library or 'Lesser' General Public License (LGPL)",
+                "MIT license",
+                "Mozilla Public License 2.0",
+                "Common Development and Distribution License",
+                "Eclipse Public License version 2.0"
+            ],
             name: 'license',
             message: 'Choose a lincense from this list',
         },
