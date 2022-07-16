@@ -17,22 +17,22 @@ const questions = () => {
         },
         {
             type: 'input',
-            name: 'installation instructions',
+            name: 'installationInstructions',
             message: 'Enter the installation instructions',
         },
         {
             type: 'input',
-            name: 'usage information',
+            name: 'usageInformation',
             message: 'Enter the usage information',
         },
         {
             type: 'input',
-            name: 'contribution guidelines',
+            name: 'contributionGuidelines',
             message: 'Enter the contribution guidelines',
         },
         {
             type: 'input',
-            name: 'test instructions',
+            name: 'testInstructions',
             message: 'Enter the test instructions',
         },
         {
@@ -52,27 +52,54 @@ const questions = () => {
         },
 ])};
 
-const generateREADME = ({ name, location, github, linkedin }) =>
-  `# **Bootcamp Portfolio**
+const generateREADME = function ({title, description, installationInstructions, usageInformation, contributionGuidelines, testInstructions, license, github, email}) {
+    return `
+# **${title}**
 
-  ## **Marcela Mejia Ortiz Portfolio** 
-  
-  _**This project is about building my own portfolio of work with the purpose of showcasing my skills and talents to employers looking to fill a part-time or full-time position. I highlight my strongest work as well as the thought processes behind it.**_
-  
-  * The code was created following the semantic elements best practice.
-  * Creating the HTML structure and CSS styling. 
-  * The portfolio display links to navigate the Homepage.
-  * A professional description about me, skills and knowledge, also a profile photo. 
-  * The portfolio presents a section called work, where it gives access to diverse web develoment aplications by clicking on the photo and focuses the attention on the main project by enlargening it.
-  * The last section provides the contact information with phone number, email, github and twitter links. 
-  * The web portfolio is responsive for diverse screen sizes. 
-  
-  
-  💡 See live version here: [https://marcelamejiao.github.io/Bootcamp-Portfolio//](https://marcelamejiao.github.io/Bootcamp-Portfolio/)
-  
-  ### **Preview**
-  
-  ![Marcela Mejia Ortiz Portfolio](./assets/images/Portfolioweb.png)`;
+## **Table of Contents** 
+
+- [**Description**](#description)
+- [**Installation**](#installation)
+- [**Usage**](#usage)
+- [**License**](#license)
+- [**Contributing**](#contributing)
+- [**Test**](#test)
+- [**Questions**](#questions)
+
+
+## **Description**
+
+${description}
+
+## **Installation**
+
+${installationInstructions}
+
+## **Usage**
+
+${usageInformation}
+
+## **Contributing**
+
+${contributionGuidelines}
+
+## **Test**   
+
+${testInstructions}
+
+## **License**
+
+${license}// TODO add special logic for license
+
+## **Questions**
+
+[https://https://github.com/marcelamejiao//](https://https://github.com/marcelamejiao/)
+https://github.com/marcelamejiao
+
+${github}// TODO add special logic for GitHub
+
+${email}// TODO add special logic for email`;
+}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
@@ -81,8 +108,8 @@ function writeToFile(fileName, data) {}
 function init() {
     questions()
     // Use writeFileSync method to use promises instead of a callback function
-    .then((answers) => fs.writeFileSync('index.html', generateREADME(answers)))
-    .then(() => console.log('Successfully wrote to index.html'))
+    .then((answers) => fs.writeFileSync('output/README.md', generateREADME(answers)))
+    .then(() => console.log('Successfully wrote to output/README.md'))
     .catch((err) => console.error(err));
 }
 
