@@ -1,6 +1,14 @@
 # Professional README generator
 
 ## **This application was created to generate a professional README for a new project.**
+
+### **Installation**
+
+```
+npm install
+```
+
+### **Usage**
  
 * The user can open the console and insert the following command: 
 ```
