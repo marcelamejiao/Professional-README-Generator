@@ -64,13 +64,15 @@ const questions = () => {
 ])};
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFileSync(fileName, data);
+}
 
 // Create a function to initialize app
 function init() {
     questions()
     // Use writeFileSync method to use promises instead of a callback function
-    .then((answers) => fs.writeFileSync('output/README.md', generateMarkdown(answers)))
+    .then((answers) => writeToFile('output/README.md', generateMarkdown(answers)))
     .then(() => console.log('Successfully wrote to output/README.md'))
     .catch((err) => console.error(err));
 }
